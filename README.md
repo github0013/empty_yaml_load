@@ -1,4 +1,32 @@
-# a way to graphql query on empty array yaml data
+# A way to graphql query on empty array yaml data
+
+Yaml files are in [src/data][1]. If you simply create a yaml file with an empty array, the yaml file won't be picked up as a graphql query type at load.
+
+e.g.
+
+```
+# src/data/empty_array.yml
+
+[]
+```
+
+query like this will fail since `allEmptyArrayYaml` itself doesn't exist.
+
+```
+{
+  allEmptyArrayYaml{
+    edges{
+      node{
+        character
+      }
+    }
+  }
+}
+```
+
+To avoid this query type mis-load, I placed a dummy type definition yaml (`type_def.yml`) file in [src/data/array][2] and [src/data/empty_array][3]. Then, when to query, filter the definition data to fetch only needed.
+
+e.g.
 
 ```
 {
@@ -49,3 +77,7 @@
   }
 }
 ```
+
+[1]: https://github.com/github0013/empty_yaml_load/tree/master/src/data
+[2]: https://github.com/github0013/empty_yaml_load/tree/master/src/data/array
+[3]: https://github.com/github0013/empty_yaml_load/tree/master/src/data/emtpy_array
