@@ -1,4 +1,4 @@
-# A way to graphql query on empty array yaml data
+# A way to query on an empty array yaml data
 
 Yaml files are in [src/data][1]. If you simply create a yaml file with an empty array, the yaml file won't be picked up as a graphql query type at load.
 
